@@ -12,8 +12,9 @@ public class Account {
         return new Account(balance);
     }
 
-    public Account deposit(Amount newAmount) {
-        return null;
+    public Account deposit(Amount amount) {
+        Balance balance = this.balance.addAmount(amount);
+        return from(balance);
     }
 
     public Balance getBalance() {
