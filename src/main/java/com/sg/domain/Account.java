@@ -21,16 +21,18 @@ public class Account {
 
     public Account deposit(OperationDeposit operationDeposit) {
         Balance balance = this.balance.addAmount(operationDeposit.getAmount());
-        List<Operation> operations = (List<Operation>) ((ArrayList)this.operations).clone();
-        operations.add(operationDeposit);
-        return from(balance, operations);
+        return from(balance, addOperation(operationDeposit));
     }
 
     public Account withdrawal(OperationWithdrawal operationWithdrawal) {
         Balance balance = this.balance.subtract(operationWithdrawal.getAmount());
+        return from(balance, addOperation(operationWithdrawal));
+    }
+
+    private List<Operation> addOperation(Operation operation) {
         List<Operation> operations = (List<Operation>) ((ArrayList)this.operations).clone();
-        operations.add(operationWithdrawal);
-        return from(balance, operations);
+        operations.add(operation);
+        return operations;
     }
 
     public Balance getBalance() {
