@@ -66,6 +66,21 @@ public class AccountTest {
         OperationWithdrawal operationWithdrawal1 = OperationWithdrawal.from(LocalDateTime.now(), newAmount2);
         account = account.withdrawal(operationWithdrawal1);
 
-        
+        Amount newAmount3 = Amount.from(new BigDecimal(100));
+        OperationDeposit operationDeposit2 = OperationDeposit.from(LocalDateTime.now(), newAmount3);
+        account = account.deposit(operationDeposit2);
+
+        Amount newAmount4 = Amount.from(new BigDecimal(80));
+        OperationWithdrawal operationWithdrawal2 = OperationWithdrawal.from(LocalDateTime.now(), newAmount4);
+        account = account.withdrawal(operationWithdrawal2);
+
+        assertEquals(4, account.getOperations().size());
+        Balance expectedBalance = Balance.from(Amount.from(new BigDecimal(220)));
+        assertEquals(expectedBalance, account.getBalance());
+        assertEquals(operationDeposit1, account.getOperations().get(0));
+        assertEquals(operationWithdrawal1, account.getOperations().get(1));
+        assertEquals(operationDeposit2, account.getOperations().get(2));
+        assertEquals(operationWithdrawal2, account.getOperations().get(3));
+
     }
 }
