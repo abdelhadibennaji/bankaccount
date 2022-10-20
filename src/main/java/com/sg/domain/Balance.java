@@ -33,4 +33,9 @@ public class Balance {
     public int hashCode() {
         return amount != null ? amount.hashCode() : 0;
     }
+
+    public Balance subtract(Amount amount) {
+        Amount amount1 = this.amount.subtract(amount);
+        return from(amount1);
+    }
 }

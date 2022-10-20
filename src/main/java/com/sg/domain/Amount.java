@@ -16,7 +16,11 @@ public class Amount {
     }
 
     public Amount Add(Amount amount) {
-        return from(value.add(amount.value));
+        return from(this.value.add(amount.value));
+    }
+
+    public Amount subtract(Amount amount) {
+        return from(this.value.subtract(amount.value));
     }
 
     @Override

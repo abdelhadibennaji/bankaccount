@@ -21,7 +21,8 @@ public class Account {
         return balance;
     }
 
-    public Account withdrawal(Amount newAmount) {
-        return null;
+    public Account withdrawal(Amount amount) {
+        Balance balance = this.balance.subtract(amount);
+        return from(balance);
     }
 }
