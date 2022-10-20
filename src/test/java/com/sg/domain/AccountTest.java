@@ -33,7 +33,8 @@ public class AccountTest {
         Balance balance = Balance.from(amount);
         Account account = Account.from(balance, new ArrayList<Operation>());
         Amount newAmount = Amount.from(new BigDecimal(50));
-        account = account.withdrawal(newAmount);
+        OperationWithdrawal operationWithdrawal = OperationWithdrawal.from(LocalDateTime.now(), newAmount);
+        account = account.withdrawal(operationWithdrawal);
         Balance expectedBalance = Balance.from(Amount.from(new BigDecimal(50)));
         assertEquals(expectedBalance, account.getBalance());
     }
@@ -45,7 +46,8 @@ public class AccountTest {
         Balance balance = Balance.from(amount);
         Account account = Account.from(balance, new ArrayList<Operation>());
         Amount newAmount = Amount.from(new BigDecimal(150));
-        account = account.withdrawal(newAmount);
+        OperationWithdrawal operationWithdrawal = OperationWithdrawal.from(LocalDateTime.now(), newAmount);
+        account = account.withdrawal(operationWithdrawal);
         Balance expectedBalance = Balance.from(Amount.from(new BigDecimal(100)));
         assertEquals(expectedBalance, account.getBalance());
     }
@@ -60,7 +62,10 @@ public class AccountTest {
         OperationDeposit operationDeposit1 = OperationDeposit.from(LocalDateTime.now(), newAmount);
         account = account.deposit(operationDeposit1);
 
-        
+        Amount newAmount2 = Amount.from(new BigDecimal(50));
+        OperationWithdrawal operationWithdrawal1 = OperationWithdrawal.from(LocalDateTime.now(), newAmount2);
+        account = account.withdrawal(operationWithdrawal1);
 
+        
     }
 }

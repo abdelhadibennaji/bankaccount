@@ -21,12 +21,12 @@ public class Account {
 
     public Account deposit(OperationDeposit operationDeposit) {
         Balance balance = this.balance.addAmount(operationDeposit.getAmount());
-        return from(balance, new ArrayList<Operation>());
+        return from(balance, new ArrayList<>());
     }
 
-    public Account withdrawal(Amount amount) {
-        Balance balance = this.balance.subtract(amount);
-        return from(balance, new ArrayList<Operation>());
+    public Account withdrawal(OperationWithdrawal operationWithdrawal) {
+        Balance balance = this.balance.subtract(operationWithdrawal.getAmount());
+        return from(balance, new ArrayList<>());
     }
 
     public Balance getBalance() {
