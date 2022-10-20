@@ -20,4 +20,8 @@ public class Account {
     public Balance getBalance() {
         return balance;
     }
+
+    public Account withdrawal(Amount newAmount) {
+        return null;
+    }
 }

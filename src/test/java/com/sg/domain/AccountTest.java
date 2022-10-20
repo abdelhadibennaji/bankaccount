@@ -24,6 +24,16 @@ public class AccountTest {
         assertEquals(expectedBalance, account.getBalance());
     }
 
-    
+    @Test
+    public void shouldMakeWithdrawalWhenWhenRetrieveMoneyAndThereIsEnoughMoney() {
+        Amount amount = Amount.from(new BigDecimal(100));
+        Balance balance = Balance.from(amount);
+        Account account = Account.from(balance);
+        Amount newAmount = Amount.from(new BigDecimal(50));
+        account = account.withdrawal(newAmount);
+        Balance expectedBalance = Balance.from(Amount.from(new BigDecimal(50)));
+        assertEquals(expectedBalance, account.getBalance());
+    }
+
 
 }
