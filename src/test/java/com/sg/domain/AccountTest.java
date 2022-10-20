@@ -35,6 +35,15 @@ public class AccountTest {
         assertEquals(expectedBalance, account.getBalance());
     }
 
-    
 
+    @Test(expected = NegativeBalanceException.class)
+    public void shouldNotMakeWithdrawalWhenRetrieveMoneyAndThereIsNotEnoughMoney() {
+        Amount amount = Amount.from(new BigDecimal(100));
+        Balance balance = Balance.from(amount);
+        Account account = Account.from(balance);
+        Amount newAmount = Amount.from(new BigDecimal(150));
+        account = account.withdrawal(newAmount);
+        Balance expectedBalance = Balance.from(Amount.from(new BigDecimal(100)));
+        assertEquals(expectedBalance, account.getBalance());
+    }
 }
