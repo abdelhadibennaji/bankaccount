@@ -8,6 +8,7 @@ public class Amount {
     private BigDecimal value;
 
     private Amount(BigDecimal value) {
+        if(value.doubleValue()<0) throw new NegativeAmountException("Amount can not be negative");
         this.value = value;
     }
 

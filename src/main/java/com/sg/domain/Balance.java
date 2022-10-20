@@ -35,7 +35,11 @@ public class Balance {
     }
 
     public Balance subtract(Amount amount) {
-        Amount amount1 = this.amount.subtract(amount);
-        return from(amount1);
+        try {
+            Amount amount1 = this.amount.subtract(amount);
+            return from(amount1);
+        } catch (NegativeAmountException e) {
+            throw new NegativeBalanceException("Balance can not be negative");
+        }
     }
 }
