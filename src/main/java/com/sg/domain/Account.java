@@ -14,19 +14,23 @@ public class Account {
         this.operations = operations;
     }
 
-    public static Account from(Balance balance, ArrayList<Operation> operations) {
+    public static Account from(Balance balance, List<Operation> operations) {
         return new Account(balance, operations);
     }
 
 
     public Account deposit(OperationDeposit operationDeposit) {
         Balance balance = this.balance.addAmount(operationDeposit.getAmount());
-        return from(balance, new ArrayList<>());
+        List<Operation> operations = (List<Operation>) ((ArrayList)this.operations).clone();
+        operations.add(operationDeposit);
+        return from(balance, operations);
     }
 
     public Account withdrawal(OperationWithdrawal operationWithdrawal) {
         Balance balance = this.balance.subtract(operationWithdrawal.getAmount());
-        return from(balance, new ArrayList<>());
+        List<Operation> operations = (List<Operation>) ((ArrayList)this.operations).clone();
+        operations.add(operationWithdrawal);
+        return from(balance, operations);
     }
 
     public Balance getBalance() {
